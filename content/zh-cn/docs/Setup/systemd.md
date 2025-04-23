@@ -41,6 +41,11 @@ description: >
     Type = simple
     # 启动frps的命令，需修改为您的frps的安装路径
     ExecStart = /path/to/frps -c /path/to/frps.toml
+    # 失败后自动重启，每次重启间隔 5 秒，60 秒内最多重启 5 次，超过后停止重启
+    Restart=on-failure
+    RestartSec=5s
+    StartLimitInterval=60s
+    StartLimitBurst=5
 
     [Install]
     WantedBy = multi-user.target
